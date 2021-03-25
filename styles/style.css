@@ -1,0 +1,35 @@
+body{font-family: 'Open Sans', sans-serif; margin: 0px !important;}
+  .hidden {display:none;}
+  .hiddenOverflow{overflow:hidden;}
+
+  .screenview {width: 100%; height: 100%;}
+    .headerContainer {height: fit-content; font-size: 2em; display: flex; align-items: center; padding: 5px; border-bottom: 2px solid;}
+      .pageHeader{text-align: center; margin: 0px auto;}
+    .bodyContainer{max-width: 800; margin:0px auto;}
+
+
+
+/*Main screen styles */
+  #mainScreen{background: #3FB7A7;}
+    #mainScreen .headerContainer{border-bottom-color: white;}
+    #mainScreen .pageHeader{color: white;}
+    #mainScreen .bodyContainer {height: inherit;}
+
+    #myCanvas {width: 100%; height: 100%; transform: translate(-50%,-50%);  top: 50%; left:50%; position: relative;}
+    #addBtn{width: 30px; height: 30px;}
+
+/*Selected screen styles */
+    #selectedScreen{position: absolute; z-index: 2; background: #03EAFF;}
+      #selectedScreen .bodyContainer{text-align: center;}
+
+      #selectedItem{font-size: 2em; margin:15px 15px 30px 15px;}
+      #downArrow {position: relative; transform: translateY(200%); width:100px; cursor: pointer;}
+      #confetti{position: absolute; transform: translate(-50%, 0);  top: 0; left: 50%;}
+
+/*edit screen styles */
+    #editScreen{position: absolute; z-index: 2; background: #03EAFF;}
+      #editScreen .headerContainer{border-bottom-color: black;}
+        #editScreen .pageHeader{color: black;}
+      #editScreen .bodyContainer{margin: 5px;}
+
+      #itemInput{width:100%}
