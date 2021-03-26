@@ -6,6 +6,7 @@ body{font-family: 'Open Sans', sans-serif; margin: 0px !important;}
     .headerContainer {height: fit-content; font-size: 2em; display: flex; align-items: center; padding: 5px; border-bottom: 2px solid;}
       .pageHeader{text-align: center; margin: 0px auto;}
     .bodyContainer{max-width: 800; margin:0px auto;}
+      .bodySection{margin: 5px 0 15px 0;}
 
 
 
@@ -32,4 +33,4 @@ body{font-family: 'Open Sans', sans-serif; margin: 0px !important;}
         #editScreen .pageHeader{color: black;}
       #editScreen .bodyContainer{margin: 5px;}
 
-      #itemInput{width:100%}
+      #itemInput{width:100%; margin: 10px 0 0 0;}

@@ -4,6 +4,8 @@
 function initWheel(wheelData){
   var canvas = document.getElementById('myCanvas');// Get a reference to the canvas object
 
+  paper.clear();//make sure the view is clear
+
   paper.setup(canvas);// Create an empty project and a view for the canvas:
 
   //globals
@@ -26,12 +28,14 @@ function initWheel(wheelData){
   var updatedMouseVector;
 
   //creates a visual pointer at the top of the wheel
-  var pointer = new paper.Path();
-  pointer.fillColor = 'black';
-  pointer.add(new paper.Point(centerPoint.x, centerPoint.y - radius + 10));
-  pointer.add( new paper.Point(centerPoint.x - 30, centerPoint.y - radius - 50));
-  pointer.add( new paper.Point(centerPoint.x + 30, centerPoint.y - radius - 50));
-  pointer.closed = true;
+  if(wheelData.length >= 1){
+    var pointer = new paper.Path();
+    pointer.fillColor = 'black';
+    pointer.add(new paper.Point(centerPoint.x, centerPoint.y - radius + 10));
+    pointer.add( new paper.Point(centerPoint.x - 30, centerPoint.y - radius - 50));
+    pointer.add( new paper.Point(centerPoint.x + 30, centerPoint.y - radius - 50));
+    pointer.closed = true;
+  }
 
 
   // Draw the view now:
