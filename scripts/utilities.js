@@ -52,3 +52,10 @@ function addNewItem(event){
     }
   }
 }
+
+function removeItem(event){
+  var index = event.target.attributes.dataindex.value;//get the index to remove from the wheel data array
+  wheelData.splice(index,1);//remove the item from the specified index
+  var updatedData = wheelData.join();//convert the new array to a string
+  localStorage.setItem('wheelData', updatedData); //update the stored string
+}

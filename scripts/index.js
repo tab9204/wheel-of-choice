@@ -80,8 +80,8 @@ var edit = {//select screen
         ]),
         m(".bodySection",[
           m("div","Click on the item to remove it from the wheel"),
-          m("ul",{id:"wheelLists"},wheelData.map((item) => {
-             return m("li",item)
+          m("ul",{id:"wheelLists"},wheelData.map((item,index) => {
+             return m("li",{dataIndex: index, onclick: (e) =>{removeItem(e);}},item)
           }))
         ])
       ])
