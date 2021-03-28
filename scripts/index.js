@@ -63,7 +63,7 @@ var select = {//select screen
   }
 }
 
-var edit = {//select screen
+var edit = {//edit screen
   view: ()=>{
     return m(".screenView.hidden",{id: "editScreen"},[
       m(".headerContainer",[
