@@ -24,11 +24,6 @@ var home = {//home screen
     if(localStorage.getItem("wheelData")){//if there is wheel data already stored used that
       wheelData = localStorage.getItem("wheelData").split(",");
     }
-    else{//if no data was stored create and store some default data to use
-      localStorage.setItem('wheelData', "");
-      wheelData = localStorage.getItem("wheelData").split(",");
-    }
-
     initWheel(wheelData);//initalize the wheel with the json data
   },
   view: ()=>{

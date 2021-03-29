@@ -5,7 +5,7 @@ body{font-family: 'Open Sans', sans-serif; margin: 0px !important;}
   .screenview {width: 100%; height: 100%;}
     .headerContainer {height: fit-content; font-size: 2em; display: flex; align-items: center; padding: 5px; border-bottom: 2px solid;}
       .pageHeader{text-align: center; margin: 0px auto;}
-    .bodyContainer{max-width: 800; margin:0px auto; height: 100%;}
+    .bodyContainer{max-width: 800; margin:0px auto; height: 100%; position: relative;}
       .bodySection{margin: 5px 0 15px 0;}
 
 
@@ -15,7 +15,7 @@ body{font-family: 'Open Sans', sans-serif; margin: 0px !important;}
     #mainScreen .headerContainer{border-bottom-color: white;}
     #mainScreen .pageHeader{color: white;}
 
-    #myCanvas {width: 100%; height: 100%; transform: translate(-50%,-50%);  top: 50%; left:50%; position: relative;}
+    #myCanvas {width: 100%; height: 100%; transform: translate(-50%,-50%);  top: 50%; left:50%; position: absolute;}
     #addBtn{width: 30px; height: 30px;}
 
 /*Selected screen styles */
