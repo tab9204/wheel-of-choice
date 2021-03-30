@@ -63,8 +63,10 @@ var edit = {//edit screen
     return m(".screenView.hidden",{id: "editScreen"},[
       m(".headerContainer",[
         m("img",{id: "addBtn", src:"./assets/back.png", onclick: ()=>{
-          hideEditScreen();
           initWheel(wheelData);//reinitalize the wheel
+          hideKeyboard();
+          hideEditScreen();
+
         }}),
         m(".pageHeader","Add items")
       ]),

@@ -15,8 +15,8 @@ body{font-family: 'Open Sans', sans-serif; margin: 0px !important;}
     #mainScreen .headerContainer{border-bottom-color: white;}
     #mainScreen .pageHeader{color: white;}
 
-    #myCanvas {width: 100%; height: 100%; transform: translate(-50%,-50%);  top: 50%; left:50%; position: absolute;}
-    #addBtn{width: 30px; height: 30px;}
+    #myCanvas {width: 100%; height: 100%; transform: translate(-50%,-50%);  top: 50%; left:50%; position: fixed;}
+    #addBtn{width: 30px; height: 30px; z-index: 2;}
 
 /*Selected screen styles */
     #selectedScreen{position: absolute; z-index: 2; background: #03EAFF;}

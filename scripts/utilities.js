@@ -29,12 +29,17 @@ function hideEditScreen(){
   });
 }
 
+function hideKeyboard(){
+	document.activeElement.blur();
+	$("input").blur();
+};
+
 function addNewItem(event){
   if (event.keyCode === 13) {
     // Cancel the default action, if needed
     event.preventDefault();
 
-    var storedData = localStorage.getItem("wheelData");
+    var storedData = localStorage.getItem("wheelData") ? localStorage.getItem("wheelData") : "";
 
     var inputData = event.target.value;
 
