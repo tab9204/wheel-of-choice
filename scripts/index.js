@@ -2,34 +2,36 @@
 
 var wheelData = [];//array containing the data for the wheel
 
+var selectedIdea;
+
 window.onload = () =>{
   var root = $("body").get(0);
 
-  m.mount(root, page);
+  window.location = "#!/home";
+
+  m.route(document.body, "/home", {
+    "/home": home,
+    "/select": select,
+    "/edit": edit
+  })
 }
 
 /****View components****/
-var page = {//page content
-  view: ()=>{
-    return m("div",[
-      m(home),
-      m(select),
-      m(edit)
-    ])
-  }
-}
-
 var home = {//home screen
   oncreate: ()=>{
     if(localStorage.getItem("wheelData")){//if there is wheel data already stored used that
       wheelData = localStorage.getItem("wheelData").split(",");
     }
+
     initWheel(wheelData);//initalize the wheel with the json data
+  },
+  onbeforeremove: ()=>{
+    return delayedResolve(700); //wait for the animation before removing the view from the dom
   },
   view: ()=>{
     return m(".screenView",{id: "mainScreen"},[
       m(".headerContainer",[
-        m("img",{id: "addBtn", src:"./assets/plus.png", onclick: showEditScreen}),
+        m("img",{id: "addBtn", src:"./assets/plus.png", onclick:()=>{window.location = "#!/edit";}}),
         m(".pageHeader","Spin the wheel")
       ]),
       m(".bodyContainer",[
@@ -41,15 +43,27 @@ var home = {//home screen
 
 var select = {//select screen
   oncreate: ()=>{
-    var swipes = {down: hideIdeaScreen};
+    var swipes = {down: ()=>{window.location = "#!/home";}};
     var lightboxSwipe = new Swiper($("#selectedScreen").get(0),swipes);
+
+    $("#selectedScreen").addClass("slideUp"); //animate the screen up when the view is created
+
+    //reduce audio and plays
+    var audio = $("#audioSource")
+    audio.volume = 0.5;
+    audio.play();
+  },
+  onbeforeremove: ()=>{
+    $("#selectedScreen").addClass("slideDown");//animate the view down
+
+    return delayedResolve(700);//delay removal for the animation
   },
   view: ()=>{
-    return m(".screenView.hidden",{id: "selectedScreen"},[
+    return m(".screenView",{id: "selectedScreen"},[
       m(".bodyContainer",[
         m("img",{id: "confetti", src:"./assets/confetti.gif"}),
-        m("div",{id:"selectedItem"}),
-        m("img",{id: "downArrow", src:"./assets/down.png", onclick: hideIdeaScreen}),
+        m("div",{id:"selectedItem"}, selectedIdea),
+        m("img",{id: "downArrow", src:"./assets/down.png", onclick: ()=>{window.location = "#!/home";}}),
         m("audio",{id: "audioSource", autoplay:"true"},[
           m("source", {src:"./assets/yay_effect.mp3", type:"audio/mpeg"})
         ]),
@@ -59,15 +73,18 @@ var select = {//select screen
 }
 
 var edit = {//edit screen
-  view: ()=>{
-    return m(".screenView.hidden",{id: "editScreen"},[
-      m(".headerContainer",[
-        m("img",{id: "addBtn", src:"./assets/back.png", onclick: ()=>{
-          initWheel(wheelData);//reinitalize the wheel
-          hideKeyboard();
-          hideEditScreen();
+  oncreate: ()=>{
+    $("#editScreen").addClass("slideUp"); //animate the screen up when the view is created
+  },
+  onbeforeremove: ()=>{
+    $("#editScreen").addClass("slideDown");//animate the view down
 
-        }}),
+    return delayedResolve(700);//delay removal for the animation
+  },
+  view: ()=>{
+    return m(".screenView",{id: "editScreen"},[
+      m(".headerContainer",[
+        m("img",{id: "addBtn", src:"./assets/back.png", onclick: ()=>{window.location = "#!/home";}}),
         m(".pageHeader","Add items")
       ]),
       m(".bodyContainer",[

@@ -1,38 +1,23 @@
 //event handlers and utility functions used by the main app
 
-//hides the idea selection screen with an animation
-function hideIdeaScreen(){
-  $("#selectedScreen").animate({top: '100%'},500,function(){
-    $("#ideaUrl").html("");
-    $("#selectedItem").html("");
-    $("#selectedScreen").hide();
-  });
-}
 //shows the idea selection screen with an animation
-function showIdeaScreen(){
-  $("#selectedScreen").show();
-  $("#selectedScreen").animate({top: '0px'},500);
-  var audio = document.getElementById("audioSource");
-  audio.volume = 0.5;
-  audio.play();
-}
-
-
-function showEditScreen(){
-  $("#editScreen").show();
-  $("#editScreen").animate({top: '0px'},500);
-}
-
-function hideEditScreen(){
-  $("#editScreen").animate({top: '100%'},500,function(){
-    $("#selectedScreen").hide();
-  });
+function showSelectScreen(selected){
+  window.location = "#!/select";
+  selectedIdea = selected;
 }
 
 function hideKeyboard(){
 	document.activeElement.blur();
 	$("input").blur();
 };
+
+//returns a promise that resolves after a delay
+//used mainly for animations
+function delayedResolve(delay){
+ return new Promise(function(resolve) {
+    setTimeout(resolve, delay)
+  })
+}
 
 function addNewItem(event){
   if (event.keyCode === 13) {
@@ -55,6 +40,7 @@ function addNewItem(event){
       $(event.target).val("");//reset the textbox to be empty
       wheelData = localStorage.getItem("wheelData").split(",");//set the wheel data to the new data
     }
+    m.redraw();//redraw the view
   }
 }
 
@@ -63,4 +49,6 @@ function removeItem(event){
   wheelData.splice(index,1);//remove the item from the specified index
   var updatedData = wheelData.join();//convert the new array to a string
   localStorage.setItem('wheelData', updatedData); //update the stored string
+
+  m.redraw();//redraw the view
 }

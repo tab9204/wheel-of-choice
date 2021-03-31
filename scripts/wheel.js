@@ -229,10 +229,9 @@ function value_limit(val, min, max) {
 //selects a random item from the json passed to the wheel
 function getRandomIdea(dataList,selector){
   var selectedIdea = dataList[selector];
-  $("#selectedItem").html(selectedIdea);
-
+  
   //animate the recipe screen
-  showIdeaScreen();
+  showSelectScreen(selectedIdea);
 }
 //returns which quadrant of the circle the mouse is in
 function getQuadrant(mouse,center){
