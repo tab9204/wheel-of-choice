@@ -145,17 +145,21 @@ function createWheel(numSegs,centerPoint,radius){
 
     wedge.rotate(degRotation * x,centerPoint); //rotate the wedge to form a circle
 
-    //creates text at the center of each wedge with the name
-    var text = new paper.PointText(new paper.Point(centerPoint.x + radius / 1.5, centerPoint.y));
-    text.rotate((degRotation * x) + (degRotation / 2),centerPoint);
-    text.rotate(90);
+    //creates text for each wedge
+    //only rotates the text if there is more then 1 wedge. text is in the center of the circle if there is a single wedge
+    var text = numSegs > 1 ? new paper.PointText(new paper.Point(centerPoint.x + radius / 1.5, centerPoint.y)) : new paper.PointText(new paper.Point(centerPoint.x, centerPoint.y));
+    if(numSegs > 1){
+      text.rotate((degRotation * x) + (degRotation / 2),centerPoint);
+      text.rotate(90);
+    }
+
     text.justification = 'center';
     text.fillColor = 'white';
     text.strokeColor = 'black';
     text.content = x;
 
     text.strokeWidth = .75;
-    text.fontSize = (radius / 5)  < 12 ? 12 : (radius / 5); //font size should be based on wheel radius
+    text.fontSize = (radius / 5)  < 12 ? 12 : (radius / 5); //font size should be based on wheel radius. minumum 12
 
     //add the wedge and text to the group
     group.addChild(wedge);
@@ -229,7 +233,7 @@ function value_limit(val, min, max) {
 //selects a random item from the json passed to the wheel
 function getRandomIdea(dataList,selector){
   var selectedIdea = dataList[selector];
-  
+
   //animate the recipe screen
   showSelectScreen(selectedIdea);
 }
