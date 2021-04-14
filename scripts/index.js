@@ -84,7 +84,12 @@ var edit = {//edit screen
   view: ()=>{
     return m(".screenView",{id: "editScreen"},[
       m(".headerContainer",[
-        m("img",{id: "addBtn", src:"./assets/back.png", onclick: ()=>{window.location = "#!/home";}}),
+        m("img",{id: "addBtn", src:"./assets/back.png", onclick: ()=>{
+          //before swapping screens wait briefly for the mobile keyboard to close
+          setTimeout(function(){
+             window.location = "#!/home";
+           }, 100);
+        }}),
         m(".pageHeader","Add items")
       ]),
       m(".bodyContainer",[
