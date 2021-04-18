@@ -5,6 +5,10 @@ var wheelData = [];//array containing the data for the wheel
 var selectedIdea;
 
 window.onload = () =>{
+
+  //set up the service worker once the page loads
+  if ('serviceWorker' in navigator) {navigator.serviceWorker.register('service-worker.js');}
+  
   var root = $("body").get(0);
 
   window.location = "#!/home";
@@ -49,9 +53,8 @@ var select = {//select screen
     $("#selectedScreen").addClass("slideUp"); //animate the screen up when the view is created
 
     //reduce audio and plays
-    var audio = $("#audioSource")
+    var audio = $("#audioSource");
     audio.volume = 0.5;
-    audio.play();
   },
   onbeforeremove: ()=>{
     $("#selectedScreen").addClass("slideDown");//animate the view down

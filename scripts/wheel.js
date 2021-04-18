@@ -52,8 +52,10 @@ function initWheel(wheelData){
       rotation = rotation - (0.05 * friction);//decrease rotation towards 0
     }
     else{
-      if(spinning){  //if the wheel was spinning it is now stopping
-        rotation = 0;
+
+      rotation = 0;
+
+      if(spinning){//if the wheel was spun
         var hit = spinningWheel.hitTest((new paper.Point(centerPoint.x, centerPoint.y - radius + 10)));//detect where the wheel stopped
         var selected = parseInt(hit.item.name.substring("wedge_".length)); //get the int from the wedge name
         getRandomIdea(wheelData,selected);//get a random idea based on the selected number
@@ -98,18 +100,20 @@ function initWheel(wheelData){
 
       rotation = (event.delta.length / 3) * direction;
 
-
       //update the current mouse vector with the updated mouse vector
       currentMouseVector = updatedMouseVector;
+
+
     }
 
   }
 
   paper.view.onMouseUp = function(event) {
 
-    if(Math.abs(rotation) >= 2){
+    if(Math.abs(rotation) >= 2){//minumum distance required to have spun the wheel
         spinning = true;
     }
+
     friction = 2;//remove friction
 
   };

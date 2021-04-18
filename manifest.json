@@ -1,0 +1,15 @@
+{
+  "short_name": "WheelOfChoice",
+  "name": "Wheel of choice",
+  "icons": [
+    {
+      "src": "assets/launch_icon.jpg",
+      "sizes": "192x192",
+      "type": "image/jpg"
+    }
+  ],
+  "background_color": "#3FB7A7",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait"
+}
